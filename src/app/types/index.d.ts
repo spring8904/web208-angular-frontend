@@ -1,5 +1,5 @@
 type IProduct = {
-  id: string;
+  _id: string;
   title: string;
   price: number;
   description: string;

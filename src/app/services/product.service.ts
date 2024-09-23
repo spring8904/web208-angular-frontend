@@ -9,10 +9,10 @@ export class ProductService {
   api = 'http://localhost:3000/products';
 
   getAll() {
-    return this.http.get<IProduct[]>(this.api);
+    return this.http.get<{ data: IProduct[] }>(this.api);
   }
 
   getProductDetail(id: string) {
-    return this.http.get<IProduct>(`${this.api}/${id}`);
+    return this.http.get<{ data: IProduct }>(`${this.api}/${id}`);
   }
 }
