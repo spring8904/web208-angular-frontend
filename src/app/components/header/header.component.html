@@ -29,7 +29,10 @@
   <!-- Header Top End -->
 
   <!-- Header Bottom Start -->
-  <div class="header-bottom header-bottom-one header-sticky">
+  <div
+    class="header-bottom header-bottom-one header-sticky"
+    [ngClass]="{ 'is-sticky': isSticky }"
+  >
     <div class="container-fluid">
       <div class="row menu-center align-items-center justify-content-between">
         <div class="col mt-15 mb-15">

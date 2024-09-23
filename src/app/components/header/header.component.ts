@@ -12,6 +12,18 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class HeaderComponent {
   isSearchActive: boolean = false;
 
+  isSticky: boolean = false;
+
+  constructor() {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        this.isSticky = true;
+      } else {
+        this.isSticky = false;
+      }
+    });
+  }
+
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
   }

@@ -13,15 +13,16 @@ export class HomeComponent {
   products: IProduct[] = [];
   productService = inject(ProductService);
 
-  // ngOnInit() {
-  //   this.productService.getAll().subscribe({
-  //     next: (data) => {
-  //       this.products = data;
-  //     },
-  //     error: (e) => {
-  //       console.log(e);
-  //       alert('Error: ' + e.message);
-  //     },
-  //   });
-  // }
+  ngOnInit() {
+    this.productService.getAll().subscribe({
+      next: ({ data }) => {
+        this.products = data;
+        console.log(data);
+      },
+      error: (e) => {
+        console.log(e);
+        alert('Error: ' + e.message);
+      },
+    });
+  }
 }
