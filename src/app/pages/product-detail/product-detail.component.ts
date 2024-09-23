@@ -1,33 +1,45 @@
 import { Component, inject } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
 })
 export class ProductDetailComponent {
   product: IProduct | null = null;
   productService = inject(ProductService);
-  route = inject(ActivatedRoute);
+  activatedRoute = inject(ActivatedRoute);
   title = inject(Title);
+  router = inject(Router);
+  quantity = 1;
 
-  // ngOnInit() {
-  //   this.route.params.subscribe((params) => {
-  //     this.productService.getProductDetail(params['id']).subscribe({
-  //       next: (data) => {
-  //         this.product = data;
-  //         this.title.setTitle(data.title);
-  //       },
-  //       error: (e) => {
-  //         console.log(e);
-  //         alert('Error: ' + e.message);
-  //       },
-  //     });
-  //   });
-  // }
+  decrement() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
+  increment() {
+    this.quantity++;
+  }
+
+  ngOnInit() {
+    this.activatedRoute.params.subscribe((params) => {
+      this.productService.getProductDetail(params['id']).subscribe({
+        next: ({ data }) => {
+          this.product = data;
+          this.title.setTitle(data.title);
+        },
+        error: (e) => {
+          console.log(e);
+          this.router.navigate(['/not-found']);
+        },
+      });
+    });
+  }
 }

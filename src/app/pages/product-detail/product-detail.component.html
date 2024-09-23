@@ -1,17 +1,145 @@
-<h1>Product Detail</h1>
-@if(product) {
-<div class="card mb-3" style="width: 18rem">
-  <img class="card-img-top" [src]="product.image" alt="Card image cap" />
-  <div class="card-body">
-    <h5 class="card-title">
-      {{ product.title }}
-    </h5>
-    <p class="card-text">
-      {{ product.description }}
-    </p>
-    <p>Price: {{ product.price }} VND</p>
+<!-- Page Banner Section Start -->
+<div
+  class="page-banner-section section"
+  style="background-image: url(assets/images/hero/hero.jpg)"
+>
+  <div class="container">
+    <div class="row">
+      <div class="page-banner-content col">
+        <h1>{{ product?.title }}</h1>
+        <ul class="page-breadcrumb">
+          <li><a routerLink="/">Home</a></li>
+          <li>
+            <a [routerLink]="['products', product?._id]">
+              {{ product?.title }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
-} @else {
-<h3>Product Not Found</h3>
-}
+<!-- Page Banner Section End -->
+
+<!-- Page Section Start -->
+<div class="page-section section section-padding">
+  <div class="container">
+    <div class="row row-30 mbn-50">
+      <div class="col-12">
+        <div class="row row-20 mb-10">
+          <div class="col-lg-6 col-12 mb-40">
+            <div
+              class="pro-large-img mb-10 fix easyzoom easyzoom--overlay easyzoom--with-thumbnails"
+            >
+              <a><img [src]="product?.image" alt="{{ product?.title }}" /></a>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-12 mb-40">
+            <div class="single-product-content">
+              <div class="head">
+                <div class="head-left">
+                  <h3 class="title">{{ product?.title }}</h3>
+
+                  <div class="ratting">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>
+                  </div>
+                </div>
+
+                <div class="head-right">
+                  <span class="price">${{ product?.price }}</span>
+                </div>
+              </div>
+
+              <div class="description">
+                <p>
+                  {{ product?.description }}
+                </p>
+              </div>
+
+              <span class="availability">
+                Availability: <span>In Stock</span>
+              </span>
+
+              <div class="quantity-colors">
+                <div class="quantity">
+                  <h5>Quantity:</h5>
+                  <div class="pro-qty">
+                    <span class="dec qtybtn" (click)="decrement()">
+                      <i class="ti-minus"></i>
+                    </span>
+                    <input type="text" value="{{ quantity }}" />
+                    <span class="inc qtybtn" (click)="increment()">
+                      <i class="ti-plus"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button>
+                  <i class="ti-shopping-cart"></i><span>ADD TO CART</span>
+                </button>
+                <button class="box" data-tooltip="Compare">
+                  <i class="ti-control-shuffle"></i>
+                </button>
+                <button class="box" data-tooltip="Wishlist">
+                  <i class="ti-heart"></i>
+                </button>
+              </div>
+
+              <div class="share">
+                <h5>Share:</h5>
+                <a><i class="fa fa-facebook"></i></a>
+                <a><i class="fa fa-twitter"></i></a>
+                <a><i class="fa fa-instagram"></i></a>
+                <a><i class="fa fa-google-plus"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-50">
+          <!-- Nav tabs -->
+          <div class="col-12">
+            <ul class="pro-info-tab-list section nav">
+              <li>
+                <a class="active" href="#more-info" data-bs-toggle="tab">
+                  More info
+                </a>
+              </li>
+              <li><a href="#data-sheet" data-bs-toggle="tab">Data sheet</a></li>
+              <li><a href="#reviews" data-bs-toggle="tab">Reviews</a></li>
+            </ul>
+          </div>
+          <!-- Tab panes -->
+          <div class="tab-content col-12">
+            <div class="pro-info-tab tab-pane active" id="more-info">
+              <p>
+                {{ product?.description }}
+              </p>
+            </div>
+            <div class="pro-info-tab tab-pane" id="data-sheet">
+              <table class="table-data-sheet">
+                <tbody>
+                  <tr class="odd">
+                    <td>Title</td>
+                    <td>{{ product?.title }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pro-info-tab tab-pane" id="reviews">
+              <a class="text-white">Be the first to write your review!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Section End -->
