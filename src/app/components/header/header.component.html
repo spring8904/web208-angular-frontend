@@ -46,7 +46,11 @@
           <!-- Header Advance Search Start -->
           <div class="header-shop-links">
             <div class="header-search">
-              <button class="search-toggle">
+              <button
+                class="search-toggle"
+                (click)="toggleSearch()"
+                [ngClass]="{ active: isSearchActive }"
+              >
                 <img src="assets/images/icons/search.png" alt="Search Toggle" />
                 <img
                   class="toggle-close"
@@ -54,7 +58,10 @@
                   alt="Search Toggle"
                 />
               </button>
-              <div class="header-search-wrap">
+              <div
+                class="header-search-wrap"
+                [ngClass]="{ active: isSearchActive }"
+              >
                 <form action="#">
                   <input type="text" placeholder="Type and hit enter" />
                   <button>
