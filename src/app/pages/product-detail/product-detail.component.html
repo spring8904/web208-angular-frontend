@@ -1,0 +1,17 @@
+<h1>Product Detail</h1>
+@if(product) {
+<div class="card mb-3" style="width: 18rem">
+  <img class="card-img-top" [src]="product.image" alt="Card image cap" />
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ product.title }}
+    </h5>
+    <p class="card-text">
+      {{ product.description }}
+    </p>
+    <p>Price: {{ product.price }} VND</p>
+  </div>
+</div>
+} @else {
+<h3>Product Not Found</h3>
+}

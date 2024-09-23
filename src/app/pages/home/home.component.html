@@ -1,0 +1,31 @@
+<h1>Home</h1>
+<div class="row">
+  @for (product of products; track product.id) {
+  <div class="col">
+    <div class="card mb-3" style="width: 18rem">
+      <a [routerLink]="['products', product.id]">
+        <img class="card-img-top" [src]="product.image" alt="Card image cap" />
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">
+          <a
+            [routerLink]="['products', product.id]"
+            class="text-reset text-decoration-none"
+          >
+            {{ product.title }}
+          </a>
+        </h5>
+        <p class="card-text">
+          {{ product.description }}
+        </p>
+        <p>Price: {{ product.price }} VND</p>
+        <a [routerLink]="['products', product.id]" class="btn btn-primary"
+          >Go somewhere</a
+        >
+      </div>
+    </div>
+  </div>
+  } @empty {
+  <li>There are no items.</li>
+  }
+</div>
