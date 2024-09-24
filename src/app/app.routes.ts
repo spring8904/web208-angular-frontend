@@ -29,6 +29,10 @@ export const routes: Routes = [
         title: 'Login & Register | Spring Store',
         component: LoginRegisterComponent,
       },
+      {
+        path: '**',
+        component: PageNotFoundComponent,
+      },
     ],
   },
   {
@@ -41,9 +45,5 @@ export const routes: Routes = [
         component: ProductsComponent,
       },
     ],
-  },
-  {
-    path: '**',
-    component: PageNotFoundComponent,
   },
 ];

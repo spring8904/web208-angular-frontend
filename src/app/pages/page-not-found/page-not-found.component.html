@@ -1,1 +1,49 @@
-<p>page-not-found works!</p>
+<!-- Page Banner Section Start -->
+<div
+  class="page-banner-section section"
+  style="background-image: url(assets/images/hero/hero.jpg)"
+>
+  <div class="container">
+    <div class="row">
+      <div class="page-banner-content col">
+        <h1>404</h1>
+        <ul class="page-breadcrumb">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/not-found">404</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Page Section Start -->
+<div class="page-section section section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-8 col-12 mx-auto">
+        <div class="error-404">
+          <h1>404</h1>
+          <h2>OPPS! PAGE NOT BE FOUND</h2>
+          <p>
+            Sorry but the page you are looking for does not exist, have been
+            removed, name changed or is temporarity unavailable.
+          </p>
+          <form action="#" class="searchform mb-30">
+            <input
+              type="text"
+              name="search"
+              id="error_search"
+              placeholder="Search..."
+            />
+            <button type="submit" class="submit" disabled>
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+          <a routerLink="/" class="back-btn">Back to home page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Section End -->
