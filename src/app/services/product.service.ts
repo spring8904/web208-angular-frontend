@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   http = inject(HttpClient);
-  api = 'http://localhost:3000/products';
+  apiUrl = environment.apiUrl;
 
   getAll() {
-    return this.http.get<{ data: IProduct[] }>(this.api);
+    return this.http.get<{ data: IProduct[] }>(`${this.apiUrl}/products`);
   }
 
   getProductDetail(id: string) {
-    return this.http.get<{ data: IProduct }>(`${this.api}/${id}`);
+    return this.http.get<{ data: IProduct }>(`${this.apiUrl}/products/${id}`);
   }
 }
