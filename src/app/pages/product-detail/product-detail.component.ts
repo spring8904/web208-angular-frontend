@@ -8,7 +8,6 @@ import { Title } from '@angular/platform-browser';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.css',
 })
 export class ProductDetailComponent {
   product: IProduct | null = null;

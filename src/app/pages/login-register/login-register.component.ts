@@ -31,7 +31,6 @@ function passwordMatchValidator(): ValidatorFn {
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule, NgIf],
   templateUrl: './login-register.component.html',
-  styleUrl: './login-register.component.css',
 })
 export class LoginRegisterComponent {
   authServices = inject(AuthService);
@@ -70,6 +69,11 @@ export class LoginRegisterComponent {
       next: (res) => {
         localStorage.setItem('token', res.token);
         this.toastr.success('Login successful');
+
+        if (res.isAdmin) {
+          this.route.navigate(['/dashboard']);
+          return;
+        }
         this.route.navigate(['/']);
       },
       error: (err) => {
