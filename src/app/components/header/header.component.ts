@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  isSearchActive: boolean = false;
+  authServices = inject(AuthService);
+  router = inject(Router);
 
+  isLogin: boolean = !!localStorage.getItem('token');
+  isSearchActive: boolean = false;
   isSticky: boolean = false;
 
   constructor() {
@@ -26,5 +30,11 @@ export class HeaderComponent {
 
   toggleSearch() {
     this.isSearchActive = !this.isSearchActive;
+  }
+
+  onLogout() {
+    localStorage.removeItem('token');
+    this.isLogin = false;
+    this.router.navigate(['/login-register']);
   }
 }

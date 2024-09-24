@@ -17,7 +17,6 @@ export class HomeComponent {
     this.productService.getAll().subscribe({
       next: ({ data }) => {
         this.products = data;
-        console.log(data);
       },
       error: (e) => {
         console.log(e);

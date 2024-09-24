@@ -18,7 +18,7 @@ type ProductForm = Pick<
 
 type IUser = {
   email: string;
-  role: string;
+  role?: string;
   password: string;
 };
 

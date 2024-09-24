@@ -33,7 +33,7 @@ export class ProductDetailComponent {
       this.productService.getProductDetail(params['id']).subscribe({
         next: ({ data }) => {
           this.product = data;
-          this.title.setTitle(data.title);
+          this.title.setTitle(data.title + ' | Spring Store');
         },
         error: (e) => {
           console.log(e);

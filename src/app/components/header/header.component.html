@@ -17,8 +17,12 @@
           <div class="header-top-right">
             <p><a routerLink="/">My Account</a></p>
             <p>
+              @if (isLogin) {
+              <a (click)="onLogout()">Logout</a>
+              } @else {
               <a routerLink="/login-register">Register</a>
               <a routerLink="/login-register">Login</a>
+              }
             </p>
           </div>
           <!-- Header Shop Links End -->
@@ -38,8 +42,9 @@
         <div class="col mt-15 mb-15">
           <!-- Logo Start -->
           <div class="header-logo">
-            <a routerLink="/">
-              <img src="assets/images/logo.png" alt="Spring Store" />
+            <a routerLink="/" class="d-flex align-items-center">
+              <img src="assets/images/logo.png" alt="Spring Store logo" />
+              <span class="fs-4">Spring Store</span>
             </a>
           </div>
           <!-- Logo End -->
@@ -91,7 +96,7 @@
           <!-- Header Advance Search End -->
         </div>
 
-        <div class="col order-3 order-lg-2">
+        <div class="col order-3 order-lg-2 mx-auto">
           <div class="main-menu">
             <nav>
               <ul>
@@ -101,16 +106,19 @@
                 >
                   <a routerLink="/">HOME</a>
                 </li>
+                <li
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                >
+                  <a routerLink="/shop">SHOP</a>
+                </li>
               </ul>
             </nav>
           </div>
         </div>
-
-        <!-- Mobile Menu -->
-        <div class="mobile-menu order-4 d-block d-lg-none col"></div>
       </div>
     </div>
   </div>
-  <!-- Header BOttom End -->
+  <!-- Header Bottom End -->
 </div>
 <!-- Header Section End -->

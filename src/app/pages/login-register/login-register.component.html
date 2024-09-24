@@ -1,1 +1,183 @@
-<p>login-register works!</p>
+<!-- Page Banner Section Start -->
+<div
+  class="page-banner-section section"
+  style="background-image: url(assets/images/hero/hero.jpg)"
+>
+  <div class="container">
+    <div class="row">
+      <div class="page-banner-content col">
+        <h1>Login & Register</h1>
+        <ul class="page-breadcrumb">
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/login-register">Login - Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Page Section Start -->
+<div class="page-section section section-padding">
+  <div class="container">
+    <div class="row mbn-40">
+      <div class="col-lg-4 col-12 mb-40">
+        <div class="login-register-form-wrap">
+          <h3>Login</h3>
+          <form [formGroup]="loginForm" (submit)="login()" class="mb-30">
+            <div class="row">
+              <div class="col-12 mb-15">
+                <input
+                  type="text"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+                <p
+                  *ngIf="
+                    loginForm.get('email')?.invalid &&
+                    loginForm.get('email')?.touched
+                  "
+                  class="text-danger ms-4"
+                >
+                  <span *ngIf="loginForm.get('email')?.hasError('required')">
+                    Email is required
+                  </span>
+                  <span *ngIf="loginForm.get('email')?.hasError('email')">
+                    Email is invalid
+                  </span>
+                </p>
+              </div>
+              <div class="col-12 mb-15">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  formControlName="password"
+                />
+                <p
+                  *ngIf="
+                    loginForm.get('password')?.invalid &&
+                    loginForm.get('password')?.touched
+                  "
+                  class="text-danger ms-4"
+                >
+                  <span *ngIf="loginForm.get('password')?.hasError('required')">
+                    Password is required
+                  </span>
+                  <span
+                    *ngIf="loginForm.get('password')?.hasError('minlength')"
+                  >
+                    Password must be at least 6 characters
+                  </span>
+                </p>
+              </div>
+              <div class="col-12">
+                <input type="submit" value="Login" />
+              </div>
+            </div>
+          </form>
+          <h4>You can also login with...</h4>
+          <div class="social-login">
+            <a><i class="fa fa-facebook"></i></a>
+            <a><i class="fa fa-twitter"></i></a>
+            <a><i class="fa fa-google-plus"></i></a>
+            <a><i class="fa fa-pinterest"></i></a>
+            <a><i class="fa fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-12 mb-40 text-center d-none d-lg-block">
+        <span class="login-register-separator"></span>
+      </div>
+
+      <div class="col-lg-6 col-12 mb-40 ms-auto">
+        <div class="login-register-form-wrap">
+          <h3>Register</h3>
+          <form [formGroup]="registerForm" (submit)="register()">
+            <div class="row">
+              <div class="col-md-12 col-12 mb-15">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+                <p
+                  *ngIf="
+                    registerForm.get('email')?.invalid &&
+                    registerForm.get('email')?.touched
+                  "
+                  class="text-danger ms-4"
+                >
+                  <span *ngIf="registerForm.get('email')?.hasError('required')">
+                    Email is required
+                  </span>
+                  <span *ngIf="registerForm.get('email')?.hasError('email')">
+                    Email is invalid
+                  </span>
+                </p>
+              </div>
+              <div class="col-md-6 col-12 mb-15">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  formControlName="password"
+                />
+                <p
+                  *ngIf="
+                    registerForm.get('password')?.invalid &&
+                    registerForm.get('password')?.touched
+                  "
+                  class="text-danger ms-4"
+                >
+                  <span
+                    *ngIf="registerForm.get('password')?.hasError('required')"
+                  >
+                    Password is required
+                  </span>
+                  <span
+                    *ngIf="registerForm.get('password')?.hasError('minlength')"
+                  >
+                    Password must be at least 6 characters
+                  </span>
+                </p>
+              </div>
+              <div class="col-md-6 col-12 mb-15">
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  formControlName="confirmPassword"
+                />
+                <p
+                  *ngIf="
+                    registerForm.get('confirmPassword')?.invalid &&
+                    registerForm.get('confirmPassword')?.touched
+                  "
+                  class="text-danger ms-4"
+                >
+                  <span
+                    *ngIf="
+                      registerForm.get('confirmPassword')?.hasError('required')
+                    "
+                  >
+                    Confirm password is required
+                  </span>
+                </p>
+                <p class="text-danger ms-4">
+                  <span
+                    *ngIf="registerForm.errors?.['passwordMismatch'] && !registerForm.get('confirmPassword')?.hasError('required')"
+                  >
+                    Confirm password does not match
+                  </span>
+                </p>
+              </div>
+              <div class="col-md-12 col-12">
+                <input type="submit" value="Register" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Section End -->
