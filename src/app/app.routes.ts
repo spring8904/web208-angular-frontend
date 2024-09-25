@@ -29,20 +29,28 @@ export const routes: Routes = [
         title: 'Login & Register | Spring Store',
         component: LoginRegisterComponent,
       },
-      {
-        path: '**',
-        component: PageNotFoundComponent,
-      },
     ],
   },
   {
     path: 'dashboard',
     component: AdminLayoutComponent,
     children: [
-      { path: '', redirectTo: '/dashboard/products', pathMatch: 'full' },
+      { path: '', redirectTo: 'products', pathMatch: 'full' },
       {
         path: 'products',
+        title: 'Product Management | Spring Store',
         component: ProductsComponent,
+      },
+    ],
+  },
+  {
+    path: '**',
+    component: ClientLayoutComponent,
+    children: [
+      {
+        path: '',
+        title: 'Page Not Found | Spring Store',
+        component: PageNotFoundComponent,
       },
     ],
   },
