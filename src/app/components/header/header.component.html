@@ -17,11 +17,6 @@
           <div class="header-top-right">
             <p><a routerLink="/">My Account</a></p>
             <p>
-              @if(isLogin && isAdmin) {
-              <a routerLink="/dashboard">Dashboard</a>
-              }
-            </p>
-            <p>
               @if (isLogin) {
               <a (click)="onLogout()">Logout</a>
               } @else {

@@ -17,9 +17,6 @@ export class HeaderComponent {
   isSearchActive: boolean = false;
   isSticky: boolean = false;
 
-  email: string = localStorage.getItem('email') || '';
-  isAdmin: boolean = false;
-
   constructor() {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 200) {
@@ -36,17 +33,8 @@ export class HeaderComponent {
 
   onLogout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('email');
     this.isLogin = false;
     this.router.navigate(['/login-register']);
-  }
-
-  ngOnInit() {
-    if (this.isLogin) {
-      this.authServices.checkIsAdmin(this.email).subscribe((res) => {
-        this.isAdmin = res.isAdmin;
-      });
-    }
   }
 
   ngDoCheck() {
