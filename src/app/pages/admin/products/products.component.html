@@ -1,1 +1,58 @@
-<p>products works!</p>
+<div class="container">
+  <div class="d-flex justify-content-between aligh-items-center">
+    <h1>Product Management</h1>
+    <button class="btn btn-primary my-auto">Add Product</button>
+  </div>
+  <div class="py-3">
+    <div class="bg-light shadow-sm rounded p-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of products; track product._id) {
+          <tr>
+            <th scope="row">{{ $index + 1 }}</th>
+            <td>
+              <img
+                [src]="product.image"
+                class="object-fit-contain border rounded"
+                style="height: 96px; width: 96px"
+                alt="{{ product.title }}"
+              />
+            </td>
+            <td>{{ product.title }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+              <h4>
+                <span
+                  class="badge bg-{{ product.isShow ? 'success' : 'danger' }} "
+                >
+                  {{ product.isShow ? "Show" : "Hide" }}
+                </span>
+              </h4>
+            </td>
+
+            <td>
+              <button class="btn btn-warning">Edit</button>
+              <button
+                (click)="onDelete(product._id)"
+                class="btn btn-danger ms-2"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

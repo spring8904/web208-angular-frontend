@@ -68,13 +68,18 @@ export class LoginRegisterComponent {
     this.authServices.login(this.loginForm.value).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('email', res.email);
         this.toastr.success('Login successful');
 
-        if (res.isAdmin) {
-          this.route.navigate(['/dashboard']);
-          return;
-        }
-        this.route.navigate(['/']);
+        this.authServices.checkIsAdmin(res.email).subscribe({
+          next: (res) => {
+            if (res.isAdmin) {
+              this.route.navigate(['/dashboard']);
+              return;
+            }
+            this.route.navigate(['/']);
+          },
+        });
       },
       error: (err) => {
         console.log(err);

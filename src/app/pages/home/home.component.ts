@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent {
   products: IProduct[] = [];
   productService = inject(ProductService);
+  toastr = inject(ToastrService);
 
   ngOnInit() {
     this.productService.getAll().subscribe({
@@ -19,7 +21,7 @@ export class HomeComponent {
       },
       error: (e) => {
         console.log(e);
-        alert('Error: ' + e.message);
+        this.toastr.error('Error: ' + e.message);
       },
     });
   }

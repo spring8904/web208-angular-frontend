@@ -4,6 +4,11 @@ import { environment } from '../../environments/environment.development';
 
 type LoginResponse = {
   token: string;
+  email: string;
+};
+
+type CheckIsAdminResponse = {
+  isAdmin: boolean;
 };
 
 @Injectable({
@@ -21,5 +26,12 @@ export class AuthService {
 
   login(data: any) {
     return this.http.post<LoginResponse>(`${this.apiUrl}/auth/login`, data);
+  }
+
+  checkIsAdmin(email: string) {
+    return this.http.post<CheckIsAdminResponse>(
+      `${this.apiUrl}/auth/is-admin`,
+      { email }
+    );
   }
 }

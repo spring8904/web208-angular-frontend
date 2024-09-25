@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { ProductsComponent } from './pages/admin/products/products.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ShopComponent } from './pages/shop/shop.component';
+import { guardGuard } from './admin/guard.guard';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: AdminLayoutComponent,
+    canActivate: [guardGuard],
     children: [
       { path: '', redirectTo: 'products', pathMatch: 'full' },
       {
