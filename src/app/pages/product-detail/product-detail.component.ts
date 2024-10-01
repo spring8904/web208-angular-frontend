@@ -31,11 +31,13 @@ export class ProductDetailComponent {
     this.activatedRoute.params.subscribe((params) => {
       this.productService.getProductDetail(params['id']).subscribe({
         next: ({ data }) => {
+          if (!data.isShow) {
+            this.router.navigate(['/not-found']);
+          }
           this.product = data;
           this.title.setTitle(data.title + ' | Spring Store');
         },
         error: (e) => {
-          console.log(e);
           this.router.navigate(['/not-found']);
         },
       });

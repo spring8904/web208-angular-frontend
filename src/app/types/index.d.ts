@@ -13,8 +13,10 @@ type IProduct = {
 
 type ProductForm = Pick<
   IProduct,
-  'title' | 'price' | 'description' | 'image' | 'isShow'
->;
+  'title' | 'price' | 'description' | 'image' | 'isShow' | 'startAt'
+> & {
+  bidTime: number;
+};
 
 type IUser = {
   email: string;

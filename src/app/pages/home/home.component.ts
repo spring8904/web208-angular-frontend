@@ -2,11 +2,12 @@ import { Component, inject } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgIf],
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
@@ -20,7 +21,6 @@ export class HomeComponent {
         this.products = data;
       },
       error: (e) => {
-        console.log(e);
         this.toastr.error('Error: ' + e.message);
       },
     });

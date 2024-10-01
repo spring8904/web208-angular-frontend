@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex justify-content-between aligh-items-center">
     <h1>Product Management</h1>
-    <button class="btn btn-primary my-auto">Add Product</button>
+    <a routerLink="add" class="btn btn-primary my-auto">Add Product</a>
   </div>
   <div class="py-3">
     <div class="bg-light shadow-sm rounded p-3">
@@ -29,7 +29,7 @@
               />
             </td>
             <td>{{ product.title }}</td>
-            <td>{{ product.price }}</td>
+            <td>${{ product.price }}</td>
             <td>
               <h4>
                 <span
@@ -41,7 +41,9 @@
             </td>
 
             <td>
-              <button class="btn btn-warning">Edit</button>
+              <a [routerLink]="['edit', product._id]" class="btn btn-warning">
+                Edit
+              </a>
               <button
                 (click)="onDelete(product._id)"
                 class="btn btn-danger ms-2"

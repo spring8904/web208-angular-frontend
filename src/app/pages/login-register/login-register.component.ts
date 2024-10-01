@@ -73,7 +73,6 @@ export class LoginRegisterComponent {
         else this.route.navigate(['/']);
       },
       error: (err) => {
-        console.log(err);
         if (Array.isArray(err.error.message)) {
           err.error.message.forEach((msg: string | undefined) => {
             this.toastr.error(msg);
@@ -97,7 +96,6 @@ export class LoginRegisterComponent {
         this.registerForm.reset();
       },
       error: (err) => {
-        console.log(err);
         if (Array.isArray(err.error.message)) {
           err.error.message.forEach((msg: string | undefined) => {
             this.toastr.error('Error: ' + msg);

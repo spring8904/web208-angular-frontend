@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between">
+    <h1>Edit Product</h1>
+    <a class="btn btn-secondary" routerLink="/dashboard/products">Go Back</a>
+  </div>
+  <div class="bg-light shadow-sm rounded p-3 mt-25">
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Title:</label>
+        <input type="text" class="form-control" formControlName="title" />
+        <p
+          *ngIf="form.get('title')?.invalid && form.get('title')?.touched"
+          class="text-danger"
+        >
+          <span *ngIf="form.get('title')?.hasError('required')">
+            Title is required
+          </span>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Price:</label>
+        <input type="text" class="form-control" formControlName="price" />
+        <p
+          *ngIf="form.get('price')?.invalid && form.get('price')?.touched"
+          class="text-danger"
+        >
+          <span *ngIf="form.get('price')?.hasError('required')">
+            Price is required
+          </span>
+          <span *ngIf="form.get('price')?.hasError('min')">
+            Price must be greater than 0
+          </span>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description:</label>
+        <textarea
+          type="text"
+          class="form-control"
+          formControlName="description"
+          rows="3"
+        ></textarea>
+        <p
+          *ngIf="
+            form.get('description')?.invalid && form.get('description')?.touched
+          "
+          class="text-danger"
+        >
+          <span *ngIf="form.get('description')?.hasError('required')">
+            Description is required
+          </span>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Image:</label>
+        <input type="text" class="form-control" formControlName="image" />
+        <p
+          *ngIf="form.get('image')?.invalid && form.get('image')?.touched"
+          class="text-danger"
+        >
+          <span *ngIf="form.get('image')?.hasError('required')">
+            Image is required
+          </span>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Bid start time:</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          formControlName="startAt"
+        />
+        <p *ngIf="form.get('startAt')?.invalid" class="text-danger">
+          <span *ngIf="form.get('startAt')?.hasError('startAtInvalid')">
+            The start date cannot be less than the current date
+          </span>
+        </p>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Bid time:</label>
+        <select formControlName="bidTime" class="form-select">
+          <option selected hidden></option>
+          <option value="15">15m</option>
+          <option value="30">30m</option>
+          <option value="60">1h</option>
+        </select>
+        <p *ngIf="form.get('bidTime')?.touched" class="text-danger">
+          <span *ngIf="form.errors?.['bidTimeRequired']">
+            You must select a bid time when the start date is set
+          </span>
+        </p>
+      </div>
+
+      <div class="form-check mb-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          checked
+          formControlName="isShow"
+          id="isShow"
+        />
+        <label class="form-check-label" for="isShow">Show</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+  </div>
+</div>

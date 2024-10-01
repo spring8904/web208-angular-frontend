@@ -1,13 +1,15 @@
 import { Routes } from '@angular/router';
+import { guardGuard } from './admin/guard.guard';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { ClientLayoutComponent } from './layouts/client-layout/client-layout.component';
+import { ProductAddComponent } from './pages/admin/product-add/product-add.component';
+import { ProductEditComponent } from './pages/admin/product-edit/product-edit.component';
+import { ProductsComponent } from './pages/admin/products/products.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginRegisterComponent } from './pages/login-register/login-register.component';
-import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { ProductsComponent } from './pages/admin/products/products.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ShopComponent } from './pages/shop/shop.component';
-import { guardGuard } from './admin/guard.guard';
 
 export const routes: Routes = [
   {
@@ -42,6 +44,16 @@ export const routes: Routes = [
         path: 'products',
         title: 'Product Management | Spring Store',
         component: ProductsComponent,
+      },
+      {
+        path: 'products/add',
+        title: 'Add Product | Spring Store',
+        component: ProductAddComponent,
+      },
+      {
+        path: 'products/edit/:id',
+        title: 'Edit Product | Spring Store',
+        component: ProductEditComponent,
       },
     ],
   },

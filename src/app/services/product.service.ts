@@ -20,4 +20,18 @@ export class ProductService {
   delete(id: string) {
     return this.http.delete(`${this.apiUrl}/products/${id}`);
   }
+
+  create(product: any) {
+    return this.http.post<{ data: IProduct }>(
+      `${this.apiUrl}/products`,
+      product
+    );
+  }
+
+  update(id: string, product: any) {
+    return this.http.put<{ data: IProduct }>(
+      `${this.apiUrl}/products/${id}`,
+      product
+    );
+  }
 }

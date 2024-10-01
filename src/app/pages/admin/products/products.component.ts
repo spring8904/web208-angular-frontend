@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { ProductService } from '../../../services/product.service';
+import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ModalDeleteComponent } from '../../../components/modal-delete/modal-delete.component';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './products.component.html',
 })
 export class ProductsComponent {
@@ -21,7 +21,6 @@ export class ProductsComponent {
         this.products = data;
       },
       error: (e) => {
-        console.log(e);
         this.toastr.error('Error: ' + e.message);
       },
     });
@@ -38,7 +37,6 @@ export class ProductsComponent {
         this.toastr.success('Product deleted');
       },
       error: (e) => {
-        console.log(e);
         this.toastr.error('Error: ' + e.message);
       },
     });
