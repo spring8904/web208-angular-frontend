@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
   FormControl,
@@ -6,20 +6,21 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ProductService } from '../../../services/product.service';
 import {
   bidTimeValidator,
   startAtValidator,
 } from '../../../validators/product';
-import { ProductService } from '../../../services/product.service';
-import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-add',
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './product-edit.component.html',
+  providers: [DatePipe],
 })
 export class ProductEditComponent {
   productService = inject(ProductService);
@@ -27,6 +28,7 @@ export class ProductEditComponent {
   activatedRoute = inject(ActivatedRoute);
   title = inject(Title);
   router = inject(Router);
+  datePipe = inject(DatePipe);
 
   form = new FormGroup(
     {
@@ -60,19 +62,8 @@ export class ProductEditComponent {
   setFormValues(data: any) {
     this.form.patchValue({
       ...data,
-      startAt: this.formatDateForInput(data.startAt),
+      startAt: this.datePipe.transform(data.startAt, 'yyyy-MM-ddTHH:mm'),
     });
-  }
-
-  formatDateForInput(date: any): string {
-    date = new Date(date);
-    const yyyy = date.getFullYear();
-    const mm = ('0' + (date.getMonth() + 1)).slice(-2); // Tháng từ 0-11
-    const dd = ('0' + date.getDate()).slice(-2);
-    const hh = ('0' + date.getHours()).slice(-2);
-    const min = ('0' + date.getMinutes()).slice(-2);
-
-    return `${yyyy}-${mm}-${dd}T${hh}:${min}`;
   }
 
   onSubmit() {
